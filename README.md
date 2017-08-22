@@ -1,2 +1,2 @@
-# JavaScript30-WesBos
+# JavaScript30
  30 Day Vanilla JS Coding Challenge 
