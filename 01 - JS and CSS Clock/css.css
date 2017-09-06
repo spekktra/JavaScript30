@@ -36,6 +36,16 @@ body {
   height: 100%;
   transform: translateY(-3px); /* account for the height of the clock hands */
 }
+/* Added a pin */
+.pin {
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  top: 49%;
+  left: 47.5%;
+  background: white;
+  border-radius: 10px;
+}
 
 .hand {
   border-radius: 10px;
@@ -49,7 +59,7 @@ body {
   transition: all 0.5s;
   transition-timing-function: cubic-bezier(0.1, 1.95, 0.58, 1);
 }
-/* • Slight hands design change */
+/* Slight hands design change */
 .hour-hand {
   width: 30%;
   left: 20%

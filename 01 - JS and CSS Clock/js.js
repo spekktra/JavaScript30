@@ -1,21 +1,38 @@
-const secondHand = document.querySelector('.second-hand');
-const minuteHand = document.querySelector('.min-hand');
-const hourHand = document.querySelector('.hour-hand');
+const 
+	secondHand = document.querySelector('.second-hand'),
+	minuteHand = document.querySelector('.min-hand'),
+	hourHand = document.querySelector('.hour-hand');
 
-function setDate() {
+// • Repeating the code every second
+setInterval(() => {
 	const now = new Date();
 
-	const seconds = now.getSeconds();
-	const secondsDegrees = ((seconds / 60) * 360) + 90;
-	secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+	// • Function for calculating hand's transform degrees 
+	const calcDegrees = (time, max) => ((time / max) * 360) + 90; 
 
-	const minutes = now.getMinutes();
-	const minutesDegrees = ((minutes / 60) * 360) + 90;
-	minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+	// • Storing degrees value
+	const 
+		secondDegrees = calcDegrees(now.getSeconds(), 60),
+		minuteDegrees = calcDegrees(now.getMinutes(), 60),
+		hourDegrees = calcDegrees(now.getHours(), 12);
 
-	const hours = now.getHours();
-	const hourDegrees = ((hours / 12) * 360) + 90;
-	hourHand.style.transform = `rotate(${hourDegrees}deg)`;  
-}
+	// • Using degrees value to transform hands
+	secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+	minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+	hourHand.style.transform = `rotate(${hourDegrees}deg)`; 
 
-setInterval(setDate, 1000);
+	// • Fixing the snap-back of each hand when it hits 90deg 
+ let fixAnimation = (degrees, hand) => {
+	if ( degrees == 90 ) {
+		hand.style.transition = 'none';
+	} else {
+		hand.style.transition = '';
+	}
+ }
+
+// • Calling the function for each of the hands respectively
+fixAnimation(secondDegrees, secondHand);
+fixAnimation(minuteDegrees, minuteHand);
+fixAnimation(hourDegrees, hourHand);
+
+}, 1000);
